@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
-// import logo from './logo.png';
 import logo from './logo 2.png';
+import Post from './Post'
+
 
 function App() {
   return (
@@ -10,7 +11,11 @@ function App() {
         <img className="App__headerImage" src={logo} alt="logo"/>
       </div>
 
-      
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+
     </div>
   );
 }
