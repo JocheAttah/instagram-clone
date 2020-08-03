@@ -1,3 +1,12 @@
+
+# Instagram Clone w/ React
+### ScreenSHot
+Work in Progress
+ <!-- ![Snapshot](/img/screen.jpg) -->
+
+### live
+https://instagramclonereact.netlify.app/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
