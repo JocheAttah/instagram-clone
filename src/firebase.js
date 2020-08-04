@@ -1,14 +1,14 @@
 import firebase from "firebase";
 
   const firebaseApp = firebase.initializeApp({
-    apiKey: "AIzaSyAVfXzkICuhpPh04sRKUhHIXOkuPbA_USE",
-    authDomain: "instagram-clone-react-ea238.firebaseapp.com",
-    databaseURL: "https://instagram-clone-react-ea238.firebaseio.com",
-    projectId: "instagram-clone-react-ea238",
-    storageBucket: "instagram-clone-react-ea238.appspot.com",
-    messagingSenderId: "334953082411",
-    appId: "1:334953082411:web:3042ffd7133808bbf7046e",
-    measurementId: "G-GLL5YVLNDT"
+    apiKey: "AIzaSyAgOFQxjA-22qRVsrMmLeOYA8lZY95JGuc",
+    authDomain: "instagram-9f8d1.firebaseapp.com",
+    databaseURL: "https://instagram-9f8d1.firebaseio.com",
+    projectId: "instagram-9f8d1",
+    storageBucket: "instagram-9f8d1.appspot.com",
+    messagingSenderId: "394487077849",
+    appId: "1:394487077849:web:8898229a2785cbbeddd7c8",
+    measurementId: "G-82NVVH29V1"
   });
 
 
@@ -18,3 +18,5 @@ import firebase from "firebase";
 
 
   export{db, auth, storage};
+
+  

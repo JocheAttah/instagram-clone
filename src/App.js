@@ -5,7 +5,7 @@ import Post from './Post';
 import {db} from './firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { Button } from '@material-ui/core';
+import { Button, Input} from '@material-ui/core';
 
 
 function getModalStyle() {
@@ -37,23 +37,32 @@ function App() {
   const [modalStyle] = useState(getModalStyle);
 
   const [posts, setPosts] = useState([]);
-  const [open, setOpen]= useState(false)
+  const [open, setOpen]= useState(false);
+  const [username, setUsername]= useState("");
+  const [email, setEmail]= useState("");
+  const [password, setPassword]= useState("");
+
 
   useEffect(()=>{
     db.collection('posts').onSnapshot(snapshot => {
       setPosts(snapshot.docs.map(doc => ({
         id: doc.id,
-        post: doc.data()})))
-    });
-    
-    
+        post: doc.data()
+      })));   
+      
+    });   
+   
   }, []);
   
   const handleClose = () => {
     setOpen(false);
   };
 
+  const handleLogin = () =>{
 
+  }
+
+  console.log(posts);
 
   return (
     <div className="App">
@@ -61,9 +70,36 @@ function App() {
         open={open}
         onClose={handleClose}
       >
-      <div style={modalStyle} className={classes.paper}>
-        <h3>I am a modal</h3>
-      </div>
+        <div style={modalStyle} className={classes.paper}>
+          <center>
+            <div>
+              <img className="App__headerImage" src={logo} alt="logo"/>
+            </div>
+          </center>
+          <form onSubmit={handleLogin} className="App__form">
+            <Input 
+              type="text"
+              placeholder="Username"              
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <Input 
+              type="email"
+              placeholder="Email"              
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            
+            <Input 
+              type="password"
+              placeholder="Password"              
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <Button>Create Account!!</Button>
+          </form>
+        </div>
       </Modal>
 
       <div className="App__header">
@@ -74,12 +110,12 @@ function App() {
       
 
       {
-        posts.map((id, post) => (
+        posts.map(({id, post}) => (
           <Post
             key={id}
             username={post.username}
             caption= {post.caption}
-            imageUrl={post.imageUrl}
+            imageUrl={post.imageUrl}  
           />
       ))}
 
