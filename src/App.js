@@ -37,6 +37,7 @@ function App() {
   const [modalStyle] = useState(getModalStyle);
 
   const [posts, setPosts] = useState([]);
+  const [openSignIn, setOpenSignIn]= useState(false);
   const [open, setOpen]= useState(false);
   const [username, setUsername]= useState("");
   const [email, setEmail]= useState("");
@@ -50,18 +51,16 @@ function App() {
         // user loged in
         console.log(authUser)
         setUser(authUser)
-
       }else{
         // no change 
         setUser(null)
-
       }
-
       return () =>{
         unsubscribe()
       }
     })
   }, [user, username])
+
 
   useEffect(()=>{
     db.collection('posts').onSnapshot(snapshot => {
@@ -69,39 +68,44 @@ function App() {
         id: doc.id,
         post: doc.data()
       })));   
-      
-    });   
-   
+    });      
   }, []);
-  
-  const handleClose = () => {
-    setOpen(false);
-  };
 
-  const handleLogin = () =>{
-
-  }
 
   const handleSignUp =(e) =>{
     e.preventDefault();
 
     auth
     .createUserWithEmailAndPassword(email, password)
-    .then((authUser){
+    .then((authUser) =>{
       return authUser.user.updateProfile({
-        displayName: username;
+        displayName: username
       })
     })
     .catch((error) => alert(error.message))
+
+    setOpen(false);
   }
 
-  console.log(posts);
+
+  const handleSignIn = (e) =>{
+    e.preventDefault();
+
+    auth
+    .signInWithEmailAndPassword(email, password)
+    .catch((error) => alert(error.message))
+
+    setOpenSignIn(false);
+
+}
+
+
 
   return (
     <div className="App">
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
       >
         <div style={modalStyle} className={classes.paper}>
           
@@ -135,12 +139,54 @@ function App() {
           </form>
         </div>
       </Modal>
+      
+      <Modal
+        open={openSignIn}
+        onClose={() => setOpenSignIn(false)}
+      >
+        <div style={modalStyle} className={classes.paper}>
+          
+          <center>
+            <div>
+              <img className="App__headerImage" src={logo} alt="logo"/>
+            </div>
+          </center>
+
+          <form className="App__form">
+            <Input 
+              type="email"
+              placeholder="Email"              
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />  
+            
+            <Input 
+              type="password"
+              placeholder="Password"              
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <Button onClick={handleSignIn}>Create Account!!</Button>
+          </form>
+        </div>
+      </Modal>
 
       <div className="App__header">
         <img className="App__headerImage" src={logo} alt="logo"/>
       </div>
 
-      <Button onClick={() => setOpen(true)} >Sign Up</Button>
+      {
+        user ? (
+        <Button onClick={() => auth.signOut()} >Log out</Button>
+      ) : (
+        <div className="App__loginContainer">
+          <Button onClick={() => setOpenSignIn(true)} >Sign in</Button>
+          <Button onClick={() => setOpen(true)} >Sign Up</Button>
+        </div>
+
+      )}
+
       
 
       {
