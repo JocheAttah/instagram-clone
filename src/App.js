@@ -2,7 +2,7 @@ import React , {useState, useEffect} from 'react';
 import './App.css';
 import logo from './logo 2.png';
 import Post from './Post';
-import {db} from './firebase';
+import {db, auth} from './firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Button, Input} from '@material-ui/core';
@@ -41,7 +41,27 @@ function App() {
   const [username, setUsername]= useState("");
   const [email, setEmail]= useState("");
   const [password, setPassword]= useState("");
+  const [user, setUser]= useState(null);
+  
+  
+  useEffect(() =>{
+    const unsubscribe = auth.onAuthStateChanged((authUser) =>{
+      if(authUser){
+        // user loged in
+        console.log(authUser)
+        setUser(authUser)
 
+      }else{
+        // no change 
+        setUser(null)
+
+      }
+
+      return () =>{
+        unsubscribe()
+      }
+    })
+  }, [user, username])
 
   useEffect(()=>{
     db.collection('posts').onSnapshot(snapshot => {
@@ -62,6 +82,19 @@ function App() {
 
   }
 
+  const handleSignUp =(e) =>{
+    e.preventDefault();
+
+    auth
+    .createUserWithEmailAndPassword(email, password)
+    .then((authUser){
+      return authUser.user.updateProfile({
+        displayName: username;
+      })
+    })
+    .catch((error) => alert(error.message))
+  }
+
   console.log(posts);
 
   return (
@@ -71,12 +104,14 @@ function App() {
         onClose={handleClose}
       >
         <div style={modalStyle} className={classes.paper}>
+          
           <center>
             <div>
               <img className="App__headerImage" src={logo} alt="logo"/>
             </div>
           </center>
-          <form onSubmit={handleLogin} className="App__form">
+
+          <form className="App__form">
             <Input 
               type="text"
               placeholder="Username"              
@@ -88,8 +123,7 @@ function App() {
               placeholder="Email"              
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-            />
-            
+            />  
             <Input 
               type="password"
               placeholder="Password"              
@@ -97,7 +131,7 @@ function App() {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <Button>Create Account!!</Button>
+            <Button onClick={handleSignUp}>Create Account!!</Button>
           </form>
         </div>
       </Modal>
