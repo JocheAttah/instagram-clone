@@ -64,7 +64,7 @@ function App() {
 
 
   useEffect(()=>{
-    db.collection('posts').onSnapshot(snapshot => {
+    db.collection('posts').orderBy("timestamp", "desc").onSnapshot(snapshot => {    //desc means descending by timstamp value from firebase
       setPosts(snapshot.docs.map(doc => ({
         id: doc.id,
         post: doc.data()
@@ -105,11 +105,7 @@ function App() {
   return (
     <div className="App">
 
-      { user?.displayName ? (
-        <ImageUpload username={user.displayName}/>
-      ) : (
-        <h4>Login to Upload</h4>
-      )}
+      {/* modal pop up for signup w username input */}
       <Modal
         open={open}
         onClose={() => setOpen(false)}
@@ -147,6 +143,7 @@ function App() {
         </div>
       </Modal>
       
+      {/* modal pop up for signin */}
       <Modal
         open={openSignIn}
         onClose={() => setOpenSignIn(false)}
@@ -179,23 +176,27 @@ function App() {
         </div>
       </Modal>
 
+      {/* header containiing logo */}
       <div className="App__header">
         <img className="App__headerImage" src={logo} alt="logo"/>
+
+        {/* sign in/ out n log in button */}
+        {
+          user ? (
+          <Button onClick={() => auth.signOut()} >Log out</Button>
+        ) : (
+          <div className="App__loginContainer">
+            <Button onClick={() => setOpenSignIn(true)} >Sign in</Button>
+            <Button onClick={() => setOpen(true)} >Sign Up</Button>
+          </div>
+
+        )}
       </div>
 
-      {
-        user ? (
-        <Button onClick={() => auth.signOut()} >Log out</Button>
-      ) : (
-        <div className="App__loginContainer">
-          <Button onClick={() => setOpenSignIn(true)} >Sign in</Button>
-          <Button onClick={() => setOpen(true)} >Sign Up</Button>
-        </div>
 
-      )}
+     
 
-      
-
+      {/* posts */}
       {
         posts.map(({id, post}) => (
           <Post
@@ -205,6 +206,13 @@ function App() {
             imageUrl={post.imageUrl}  
           />
       ))}
+
+      {/* login */}
+      { user?.displayName ? (
+        <ImageUpload username={user.displayName}/>
+      ) : (
+        <h4>Login to Upload</h4>
+      )}
 
 
     </div>

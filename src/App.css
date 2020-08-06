@@ -9,13 +9,16 @@ body{
 }
 
 .App__header{
+  padding: 20px;
+  background-color: white;
   width: 100%;
   border: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
 
 }
 
 .App__headerImage{
-  padding: 1.2rem;
   object-fit: contain;
 }
 
