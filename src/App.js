@@ -183,7 +183,7 @@ function App() {
         {/* sign in/ out n log in button */}
         {
           user ? (
-          <Button onClick={() => auth.signOut()} >Log out</Button>
+          <Button className="App__loginContainer--logout" onClick={() => auth.signOut()} >Log out</Button>
         ) : (
           <div className="App__loginContainer">
             <Button onClick={() => setOpenSignIn(true)} >Sign in</Button>
@@ -194,19 +194,20 @@ function App() {
       </div>
 
 
-     
-
-      {/* posts */}
-      {
-        posts.map(({id, post}) => (
-          <Post
-            key={id}
-            username={post.username}
-            caption= {post.caption}
-            imageUrl={post.imageUrl}  
-          />
-      ))}
-
+      <div className="App__posts">
+        {/* posts */}
+        {
+          posts.map(({id, post}) => (
+            <Post
+              key={id}
+              postId={id}
+              username={post.username}
+              caption= {post.caption}
+              imageUrl={post.imageUrl}  
+            />
+        ))} 
+      </div>
+      
       {/* login */}
       { user?.displayName ? (
         <ImageUpload username={user.displayName}/>

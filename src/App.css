@@ -11,7 +11,6 @@ body{
 .App__header{
   padding: 20px;
   background-color: white;
-  width: 100%;
   border: 1px solid lightgray;
   display: flex;
   justify-content: space-between;
@@ -25,4 +24,31 @@ body{
 .App__form{
   display: flex;
   flex-direction: column;
+}
+.App__posts{
+  padding:20px;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track
+// ::-webkit-scrollbar-track {
+//   // background: #f1f1f1; 
+// } */
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  /* background: #cacaca; */
+  /* background: red; */
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(173, 173, 173);
+  /* // background: #555;  */
 }
