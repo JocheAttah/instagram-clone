@@ -1,8 +1,9 @@
 
 # Instagram Clone w/ React
-### ScreenSHot
-Work in Progress
+###   ScreenSHot
  ![Snapshot](/img/wip.jpg)
+   Work in Progress
+
 
 ### live
 https://instagramclonereact.netlify.app/

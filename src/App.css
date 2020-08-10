@@ -9,6 +9,8 @@ body{
 }
 
 .App__header{
+  position: sticky;
+  top: 0;
   padding: 20px;
   background-color: white;
   border: 1px solid lightgray;
@@ -27,8 +29,14 @@ body{
 }
 .App__posts{
   padding:20px;
+  display: flex;
+  justify-content: center;
 }
 
+/* .App__embed{
+  margin-left: 20px;
+}
+ */
 
 /* width */
 ::-webkit-scrollbar {
