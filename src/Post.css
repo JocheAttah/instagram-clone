@@ -1,4 +1,4 @@
-.Post{
+.Post {
     border: 1px solid lightgray;
     background-color: white;
     max-width: 614px;
@@ -6,54 +6,55 @@
 
 }
 
-.Post__header{
+.Post__header {
     display: flex;
     align-items: center;
     padding: 20px;
 }
 
-.Post__avatar{
-    margin-right:10px
+.Post__avatar {
+    margin-right: 10px
 }
-.Post__image{
+
+.Post__image {
     width: 100%;
     object-fit: contain;
     border-top: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
 }
 
-.Post__text{
-    padding:20px;
+.Post__text {
+    padding: 20px;
 }
 
-.Post__form{
+.Post__form {
     border-top: 1px solid lightgray;
     display: flex;
     margin-top: 10px;
 }
 
-.Post__input{
+.Post__input {
     flex: 1;
     padding: 20px;
-    border:none;
+    border: none;
     outline: none;
 
 
 }
 
-.Post__button{
+.Post__button {
     flex: 0;
     padding: 20px;
     font-size: 15px;
     font-weight: 600;
     background-color: transparent;
     border: none;
-    color:#0095F6;
+    color: #0095F6;
     outline: none;
 
 }
 
-.Post__comment{
+.Post__comment {
     margin: 0 0 5px 20px;
-    
+
 }

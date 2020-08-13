@@ -1,16 +1,16 @@
-.ImageUpload{
+.ImageUpload {
     display: flex;
     flex-direction: column;
     width: 60%;
     margin: 10px auto;
 }
 
-.ImageUpload__progress{
-    width:100%;
+.ImageUpload__progress {
+    width: 100%;
     margin-bottom: 5px;
 }
 
 .ImageUpload__caption,
-.ImageUpload__file{
+.ImageUpload__file {
     margin-bottom: 5px;
 }

@@ -1,14 +1,32 @@
-
 # Instagram Clone w/ React
-###   ScreenSHot
- ![Snapshot](/img/wip.jpg)
-   Work in Progress
 
+## ScreenSHot
+
+![Snapshot](/img/wip.jpg)
+Work in Progress
 
 ### live
+
 https://instagramclonereact.netlify.app/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Improvements I plan to make
+
+-when you sign up it doesnt automatically sign you in so you cant upload.
+it should either automatically sign you in 
+or 
+ask you to siign in witth your newly created account.
+
+
+- Make a button that brings u a modal for photo upload
+  let it stick to the bottom.
+
+- avarta/profile picture and add it to signup make make name the alt
+
+- Add like button and show the number of likes on each post
+
+- Post short videos
+
+-make the web page lik iit is and add profiles.
 
 ## Available Scripts
 
