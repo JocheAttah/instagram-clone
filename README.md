@@ -12,11 +12,11 @@ https://instagramclonereact.netlify.app/
 ## Improvements I plan to make
 
 -when you sign up it doesnt automatically sign you in so you cant upload.
-it should either automatically sign you in 
-or 
+it should either automatically sign you in
+or
 ask you to siign in witth your newly created account.
 
-
+- Add to top nav but for everyone that doesn't work make it disabled.
 - Make a button that brings u a modal for photo upload
   let it stick to the bottom.
 

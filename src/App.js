@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import logo from "./logo 2.png";
+import AddSvg from "./assets/icons/plus.svg";
 import Post from "./Post";
 import { db, auth } from "./firebase";
 import { makeStyles } from "@material-ui/core/styles";
@@ -42,6 +43,8 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [openToPost, setOpenToPost] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -83,9 +86,11 @@ function App() {
           displayName: username,
         });
       })
+
       .catch((error) => alert(error.message));
 
     setOpen(false);
+    setLoggedIn(true);
   };
 
   const handleSignIn = (e) => {
@@ -96,6 +101,7 @@ function App() {
       .catch((error) => alert(error.message));
 
     setOpenSignIn(false);
+    setLoggedIn(true);
   };
 
   return (
@@ -163,6 +169,12 @@ function App() {
         </div>
       </Modal>
 
+      <Modal open={openToPost} onClose={() => setOpenToPost(false)}>
+        <div style={modalStyle} className={classes.paper}>
+          <ImageUpload />
+        </div>
+      </Modal>
+
       {/* header containiing logo */}
       <div className="App__header">
         <div className="App__header--container">
@@ -216,12 +228,18 @@ function App() {
         </div>
       </div>
 
-      {/* login */}
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName} />
-      ) : (
-        <h4>Login to Upload</h4>
-      )}
+      <div className="App__footer">
+        {/* login */}
+        {user?.displayName ? (
+          <Button onClick={() => setOpenToPost(true)}>
+            {" "}
+            Click Here to Add Photo{" "}
+          </Button>
+        ) : (
+          <h4>Login to Upload</h4>
+        )}
+      </div>
+      {/* <Button onClick={() => setOpenToPost(true)}> <img className="App__addButton" src={AddSvg} alt="Add Photo"/></Button> */}
     </div>
   );
 }
