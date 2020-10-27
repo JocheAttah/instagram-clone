@@ -4,13 +4,14 @@ import { Button, Input } from "@material-ui/core";
 import firebase from "firebase";
 import "./ImageUpload.css";
 
-function ImageUpload({ username }) {
+function ImageUpload({ username, setOpenToPost }) {
   const [image, setImage] = useState(null);
   const [progress, setProgress] = useState(0);
+  // const [openToPost, setOpenToPost] = useState(false);
   const [caption, setCaption] = useState("");
 
   const handleChange = (e) => {
-    if (e.target.files[0]) {  
+    if (e.target.files[0]) {
       setImage(e.target.files[0]);
     }
   };
@@ -42,14 +43,16 @@ function ImageUpload({ username }) {
           .then((url) => {
             // this will post the imag inside db
             db.collection("posts").add({
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(), 
               caption: caption,
               imageUrl: url,
-              username: username,
+              username: username
             });
             setCaption("");
             setImage(null);
             setProgress(0);
+            setOpenToPost(false);
+            
           });
       }
     );

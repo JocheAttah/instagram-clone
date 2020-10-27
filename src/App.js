@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import logo from "./logo 2.png";
-import AddSvg from "./assets/icons/plus.svg";
+// import AddSvg from "./assets/icons/plus.svg";
 import Post from "./Post";
 import { db, auth } from "./firebase";
 import { makeStyles } from "@material-ui/core/styles";
@@ -171,7 +171,9 @@ function App() {
 
       <Modal open={openToPost} onClose={() => setOpenToPost(false)}>
         <div style={modalStyle} className={classes.paper}>
-          <ImageUpload />
+          <ImageUpload 
+          username= {user?.displayName}
+          setOpenToPost= {setOpenToPost}/>
         </div>
       </Modal>
 
