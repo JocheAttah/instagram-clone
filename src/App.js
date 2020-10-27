@@ -52,8 +52,11 @@ function App() {
         // user loged in
         console.log(authUser);
         setUser(authUser);
+        setLoggedIn(true);
+
       } else {
         // no change
+        setLoggedIn(false);
         setUser(null);
       }
       return () => {
@@ -232,7 +235,8 @@ function App() {
 
       <div className="App__footer">
         {/* login */}
-        {user?.displayName ? (
+        {/* {(user?.displayName || setLoggedIn(true)) ? ( */}
+        {loggedIn ? (
           <Button onClick={() => setOpenToPost(true)}>
             {" "}
             Click Here to Add Photo{" "}
